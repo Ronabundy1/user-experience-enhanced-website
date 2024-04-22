@@ -1,0 +1,25 @@
+<%- include('./partials/head') %>
+<main>
+    <article class="item">
+        <% if (itemData) { %>
+            <h2><%= itemData.title %></h2>
+            <figure>
+                <img src="https://fdnd-agency.directus.app/assets/<%= itemData.image %>" width="300" height="150">
+            </figure>
+            <section>
+                <h3>Short Description</h3>
+                <%= itemData.long_description %>
+            </section>
+            <a href="/contact" class="contact-button">Contact Us</a>
+        <% } else { %>
+            <p>Item not found</p>
+        <% } %>
+
+        <!-- Add more sections for additional properties -->
+    </article>
+</main>
+<%- include('./partials/foot') %>
+
+
+
+

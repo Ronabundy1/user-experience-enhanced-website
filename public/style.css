@@ -1,0 +1,235 @@
+/* Kleuren */
+:root {
+  --primair: #c58f1b; /* Hoofdkleur */
+  --tekst: #333; /* Tekstkleur */
+  --link: rgb(255, 255, 255); /* Kleur van links */
+  --bezocht-link: rgb(0, 0, 0); /* Kleur van bezochte links */
+  --hover-link: red; /* Kleur van links bij hover */
+  --actieve-link: rgb(255, 255, 255); /* Kleur van actieve links */
+}
+
+/* Basisstijl */
+html {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+/* Links en navigatiemenu */
+a,
+nav ul,
+nav ul li {
+  text-decoration: none;
+  color: var(--tekst);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a:hover {
+  color: var(--hover-link);
+}
+
+a:visited {
+  color: var(--bezocht-link);
+}
+
+a:active {
+  color: var(--actieve-link);
+}
+
+/* Algemene stijl */
+body {
+  font-family: 'PP Formula', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+}
+
+/* Horizontale navigatiemenu */
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: var(--tekst);
+}
+
+/* Hoofdinhoud */
+main {
+  padding: 0;
+  margin-top: 60px;
+}
+
+.item {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primair);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+/* Zij-aan-zij secties */
+main {
+  display: flex;
+}
+
+.vraag-section,
+.aanbod-section {
+  flex: 1;
+  margin-right: 20px;
+}
+
+/* Afbeelding op homepage */
+.image-homepage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.image-homepage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gecentreerde titel */
+.centered-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+/* Zorgen dat de header bovenaan staat */
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100% - 200px);
+  z-index: 1000;
+}
+
+nav {
+  color: var(--tekst);
+  padding: 10px;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: var(--tekst);
+}
+
+/* Groene knop */
+.button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.5rem;
+  border-width: 1px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  line-height: 1.6;
+  background-color: var(--primair);
+  color: white;
+  text-decoration: none;
+}
+
+/* Groene knop bij hover */
+.green-button:hover {
+  background-color: #b37e0f;
+}
+
+/* Media query */
+@media screen and (min-width: 768px) {
+  nav ul li {
+    margin-right: 20px;
+  }
+
+  .button {
+    width: auto;
+    padding: 10px 20px;
+  }
+}
+
+/* initiatief form  */
+#initiatief {
+  background-color: #ffffff;
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Het formulier wordt nu in het midden van de pagina geplaatst */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#initiatief label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#initiatief input[type="text"],
+#initiatief input[type="email"],
+#initiatief input[type="url"],
+#initiatief textarea,
+#initiatief input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+#initiatief textarea {
+  resize: vertical;
+}
+
+#initiatief button {
+  background-color: var(--primair);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  font-size: 16px;
+}
+
+#initiatief button:hover {
+  background-color: var(--tekst);
+}
+
