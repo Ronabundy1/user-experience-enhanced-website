@@ -6,8 +6,12 @@ import express from 'express'
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
 
+
 // Maak een nieuwe express app aan
 const app = express()
+
+// Dit zorgt ervoor dat je JSON kunt ontvangen in POST requests
+app.use(express.json());
 
 // Stel ejs in als template engine
 app.set('view engine', 'ejs')
@@ -20,7 +24,7 @@ app.use(express.static('public'));
 
 // Route voor de hoofdpagina (GET)
 app.get('/', function (request, response) {
-  // Laat de index pagina zien
+  // Laat de index pagina zienS
   response.render("index");
 });
 
@@ -89,6 +93,54 @@ app.get('/detail/:itemId', function (request, response) {
     });
 });
 
+// Route om like verzoeken te verwerken
+app.post('/like', async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    console.log('Like verzoek ontvangen voor item met ID:', itemId);
+
+    // Voer logica uit om likes voor het opgegeven item bij te werken
+    const updatedLikes = await updateLikes(itemId);
+
+    // Stuur het bijgewerkte aantal likes terug naar de client
+    res.json({ likes: updatedLikes });
+  } catch (error) {
+    console.error('Fout bij verwerken van like actie:', error);
+    res.status(500).json({ error: 'Verwerken van like actie is mislukt' });
+  }
+});
+
+// Functie om het aantal likes voor het opgegeven item bij te werken
+async function updateLikes(itemId) {
+  try {
+    // Haal het huidige aantal likes op voor het item vanuit je API of database
+    const itemData = await fetchJson(`https://fdnd-agency.directus.app/items/dh_services/${itemId}`);
+    const currentLikes = itemData.data.likes || 0; // Gebruik het bestaande aantal likes of standaard naar 0
+
+    // Verhoog het aantal likes met 1
+    const newLikes = currentLikes + 1;
+
+    // Werk het aantal likes bij in de externe API of database
+    const updateResponse = await fetch(`https://fdnd-agency.directus.app/items/dh_services/${itemId}`, {
+      method: 'PATCH', // Gebruik PATCH-methode om specifieke velden bij te werken
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ likes: newLikes }), // Werk het likes-veld bij met de nieuwe waarde
+    });
+
+    if (!updateResponse.ok) {
+      throw new Error('Kon het aantal likes niet bijwerken');
+    }
+
+    // Geef het bijgewerkte aantal likes terug
+    return newLikes;
+  } catch (error) {
+    throw new Error(`Fout bij het bijwerken van het aantal likes: ${error.message}`);
+  }
+}
+
+
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000);
 
@@ -97,3 +149,4 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console met het gebruikte poortnummer
   console.log(`Application started on http://localhost:${app.get('port')}`);
 });
+

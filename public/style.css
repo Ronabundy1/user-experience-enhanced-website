@@ -14,6 +14,7 @@ html {
   height: 100%;
   width: 100%;
   overflow: auto;
+  font-size: 16px;
 }
 
 /* Links en navigatiemenu */
@@ -113,7 +114,7 @@ main {
   object-fit: cover;
 }
 
-/* Gecentreerde titel */
+/* homepagina tekst */
 .centered-title {
   position: absolute;
   top: 50%;
@@ -164,22 +165,39 @@ nav ul li a {
   text-decoration: none;
 }
 
+button {
+  padding: 8px 16px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
+
+
 /* Groene knop bij hover */
 .green-button:hover {
   background-color: #b37e0f;
 }
 
-/* Media query */
-@media screen and (min-width: 768px) {
-  nav ul li {
-    margin-right: 20px;
-  }
-
-  .button {
-    width: auto;
-    padding: 10px 20px;
-  }
+/* Aanpassingen voor sectiekoppen */
+.vraag-section h2,
+.aanbod-section h2 {
+  text-align: center; /* Centreer de koppen */
+  margin-top: 0; /* Verwijder eventuele bovenmarge */
 }
+
+/* Optioneel: voeg wat ruimte onder de koppen toe */
+.vraag-section h2,
+.aanbod-section h2 {
+  margin-bottom: 20px;
+}
+
+
 
 /* initiatief form  */
 #initiatief {
@@ -233,3 +251,86 @@ nav ul li a {
   background-color: var(--tekst);
 }
 
+/* Stijl voor de like button */
+#likeButton {
+  font-size: 1.5rem; 
+  color: red; 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  transition: color 0.3s ease; /* overgang */
+}
+
+/* Stijl voor de loading state */
+#likeButton.loading {
+  color: gray; /* Verander de kleur naar grijs tijdens het laden */
+  pointer-events: none; /* Schakel interactie uit tijdens het laden */
+}
+
+
+
+/* Styles for mobile devices (up to 600px width) */
+@media only screen and (max-width: 600px) {
+  /* Reset font size to improve text readability on smaller screens */
+  html {
+    font-size: 14px;
+  }
+
+  header {
+    width: 100%; /* Full width for header */
+  }
+
+  /* Adjust layout for main sections */
+  main {
+    flex-direction: column; 
+  }
+
+  nav {
+    text-align: center; /* Center de navigatie op kleine schermen */
+  }
+
+  nav ul {
+    justify-content: center; /* Center de navigatie-items */
+    flex-direction: column; /* Stapel de items verticaal op */
+    padding: 0; /* Verwijder eventuele padding */
+  }
+
+  nav li {
+    margin: 10px 0; /* Voeg ruimte toe tussen de navigatie-items */
+  }
+
+  /* Optioneel: verberg de navigatie op kleine schermen en voeg een menuknop toe */
+  .menu-button {
+    display: block; /* Toon als een blok om volledige breedte te gebruiken */
+    background-color: var(--primair); /* Gebruik de hoofdkleur */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 20px auto; /* Plaats de knop in het midden van de pagina */
+    text-decoration: none;
+  }
+}
+
+  
+  .vraag-section,
+  .aanbod-section {
+    margin-right: 0;
+  }
+
+  
+  img {
+    max-width: 100%; /* Ensure images resize appropriately */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+
+  .vraag-section li,
+  .aanbod-section li {
+    text-align: center;
+  }
+
+  
+  button {
+    padding: 10px 16px; 
+    font-size: 14px; 
+  }
