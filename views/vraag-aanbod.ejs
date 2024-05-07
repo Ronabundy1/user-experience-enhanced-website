@@ -49,7 +49,7 @@
                     <div>
                         <h3><a href="/detail/<%= item.id %>"><%= item.title %></a></h3>
                         <p><%= item.short_description %></p>
-                        <p> <button>Meer informatie</p> 
+                        <p><a href="/detail/<%= item.id %>">Meer informatie</a></p>
                         <!-- Like button -->
                         <button type="button" id="likeButton-<%= item.id %>" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
                         <span id="like-count-<%= item.id %>"><%= item.likes || 0 %></span>
@@ -83,7 +83,7 @@
                     <div>
                         <h3><a href="/detail/<%= item.id %>"><%= item.title %></a></h3>
                         <p><%= item.short_description %></p>
-                        <p> <button>Meer informatie</p>
+                        <p><a href="/detail/<%= item.id %>">Meer informatie</a></p>
                         <!-- Like button -->
                         <button type="button" id="likeButton-<%= item.id %>" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
                         <span id="like-count-<%= item.id %>"><%= item.likes || 0 %></span>                      
