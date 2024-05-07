@@ -1,20 +1,57 @@
 <%- include('./partials/head') %>
 <main>
+
+    <!-- Intro -->
+    
+    <div class="intro">
+        <h1>Vraag en Aanbod</h1>
+        <p>Hieronder vind je een overzicht van gevraagde artikelen. Klik op een item om naar de website te gaan waarop het verzoek is geplaatst. Daar kun je in contact komen met de persoon die het verzoek heeft ingediend.</p>
+        <hr>
+    </div>
+    
+    
+    <!-- Categorieën -->
+
+    <div class="categorie-bar">
+        <h2>Vraag & Aanbod</h2>
+        <hr>
+        <ul>
+          <li><a href="#vraag-section">Gevraagde Diensten</a></li>
+          <li><a href="#aanbod-section">Aangeboden Diensten</a></li>
+        </ul>
+      </div>
+      
+
+
+
     <!-- Section for displaying "Vraag" items -->
-    <section class="vraag-section">
-        <h2>Vraag</h2>
+    <section class="vraag-section" id="vraag-section">
+        <h2>Aangeboden diensten</h2>
         <ul>
             <% vraagaanbod.filter(item => item.type === 'vraag').forEach(function(item) { %>
                 <li>
                     <% if (item.image) { %>
-                        <img src="https://fdnd-agency.directus.app/assets/<%= item.image %>" alt="<%= item.title %>" width="300" height="150">
+                        <picture>
+                        
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= item.image %>.webp" type="image/webp">
+                            
+                            <img src="https://fdnd-agency.directus.app/assets/<%= item.image %>.jpg" alt="<%= item.title %>" 
+                                width="300" height="150" loading="lazy"
+                                srcset="
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_small.jpg 300w,
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_medium.jpg 600w,
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_large.jpg 1200w"
+                                sizes="(max-width: 600px) 300px,
+                                       (max-width: 1200px) 600px,
+                                       1200px">
+                        </picture>
                     <% } %>
                     <div>
                         <h3><a href="/detail/<%= item.id %>"><%= item.title %></a></h3>
                         <p><%= item.short_description %></p>
-                        <p>Meer informatie</p>
+                        <p> <button>Meer informatie</p> 
                         <!-- Like button -->
-                        <button type="button" id="likeButton" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
+                        <button type="button" id="likeButton-<%= item.id %>" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
                         <span id="like-count-<%= item.id %>"><%= item.likes || 0 %></span>
                     </div>
                 </li>
@@ -22,21 +59,34 @@
         </ul>
     </section>
     <!-- Section for displaying "Aanbod" items -->
-    <section class="aanbod-section">
-        <h2>Aanbod</h2>
+    <section class="aanbod-section" id="aanbod-section">
+        <h2>Gevraagde aanbod</h2>
         <ul>
             <% vraagaanbod.filter(item => item.type === 'aanbod').forEach(function(item) { %>
                 <li>
                     <% if (item.image) { %>
-                        <img src="https://fdnd-agency.directus.app/assets/<%= item.image %>" alt="<%= item.title %>" width="300" height="150">
+                        <picture>
+                            <!-- WebP format for modern browsers -->
+                            <source srcset="https://fdnd-agency.directus.app/assets/<%= item.image %>.webp" type="image/webp">
+                            <!-- Fallback to JPEG for older browsers -->
+                            <img src="https://fdnd-agency.directus.app/assets/<%= item.image %>.jpg" alt="<%= item.title %>" 
+                                width="300" height="150" loading="lazy"
+                                srcset="
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_small.jpg 300w,
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_medium.jpg 600w,
+                                    https://fdnd-agency.directus.app/assets/<%= item.image %>_large.jpg 1200w"
+                                sizes="(max-width: 600px) 300px,
+                                       (max-width: 1200px) 600px,
+                                       1200px">
+                        </picture>
                     <% } %>
                     <div>
                         <h3><a href="/detail/<%= item.id %>"><%= item.title %></a></h3>
                         <p><%= item.short_description %></p>
-                        <p>Meer informatie</p>
+                        <p> <button>Meer informatie</p>
                         <!-- Like button -->
-                        <button type="button" id="likeButton" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
-                        <span id="like-count-<%= item.id %>"><%= item.likes || 0 %></span>
+                        <button type="button" id="likeButton-<%= item.id %>" onclick="handleLike('<%= item.id %>')">❤️ Like</button>
+                        <span id="like-count-<%= item.id %>"><%= item.likes || 0 %></span>                      
                     </div>
                 </li>
             <% }) %>
@@ -46,5 +96,3 @@
 <%- include('./partials/foot') %>
 
 <script src="/main.js"></script>
-
-

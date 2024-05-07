@@ -14,17 +14,19 @@ html {
   height: 100%;
   width: 100%;
   overflow: auto;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Links en navigatiemenu */
 a,
 nav ul,
 nav ul li {
+  width: auto;
   text-decoration: none;
   color: var(--tekst);
   list-style-type: none;
   margin: 0;
+  align-items: center;
   padding: 0;
 }
 
@@ -64,15 +66,18 @@ nav a {
 
 /* Hoofdinhoud */
 main {
-  padding: 0;
-  margin-top: 60px;
+  display: block;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  padding-top: 60px;
 }
 
 .item {
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding-top: 60px;
   margin-bottom: 20px;
 }
 
@@ -87,15 +92,15 @@ footer {
   bottom: 0;
 }
 
-/* Zij-aan-zij secties */
-main {
-  display: flex;
-}
-
 .vraag-section,
 .aanbod-section {
   flex: 1;
   margin-right: 20px;
+  display: block;
+}
+
+.show-section {
+  display: block;
 }
 
 /* Afbeelding op homepage */
@@ -130,13 +135,15 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  width: calc(100% - 200px);
+  max-width: 100%;
+  width: 100px;
   z-index: 1000;
 }
 
 nav {
-  color: var(--tekst);
+  color: var(--link);
   padding: 10px;
+  text-align: center;
 }
 
 nav ul li {
@@ -167,15 +174,17 @@ nav ul li a {
 
 button {
   padding: 8px 16px;
-  background-color: blue;
+  font-size: 14px;
+  background-color: grey;
   color: white;
+  text-align: center;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: darkblue;
+  background-color: #555555;
 }
 
 
@@ -185,18 +194,73 @@ button:hover {
 }
 
 /* Aanpassingen voor sectiekoppen */
-.vraag-section h2,
-.aanbod-section h2 {
+.vraag-section h2 h1,
+.aanbod-section h2 h1 {
   text-align: center; /* Centreer de koppen */
   margin-top: 0; /* Verwijder eventuele bovenmarge */
+  margin-bottom: 20px; 
+}
+.vraag-section p,
+.aanbod-section p {
+    text-align: center;
 }
 
-/* Optioneel: voeg wat ruimte onder de koppen toe */
-.vraag-section h2,
-.aanbod-section h2 {
+.categorie-bar {
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  width: 200px; 
+  flex: 0 0 auto; 
+  margin-right: 20px; */
 }
 
+
+
+
+.categorie-bar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--tekst)
+
+
+}
+
+.categorie-bar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.categorie-bar ul li {
+  margin-bottom: 10px;
+}
+
+.categorie-bar ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.categorie-bar ul li a:hover {
+  color: #c58f1b;
+}
+
+.intro {
+  max-width: 800px;
+  padding: 20px; 
+  text-align: left; 
+  margin-bottom: 20px; 
+  color: var(--tekst) ;
+}
+
+hr {
+  border: none; 
+  height: 1px; 
+  background-color: var(--primair);
+  width: 100; 
+  margin: 20px 0; 
+}
 
 
 /* initiatief form  */
@@ -253,13 +317,20 @@ button:hover {
 
 /* Stijl voor de like button */
 #likeButton {
-  font-size: 1.5rem; 
+  font-size: 1.2rem; 
   color: red; 
   background: none; 
   border: none; 
   cursor: pointer; 
   transition: color 0.3s ease; /* overgang */
 }
+
+/* Hover effect */
+
+#likeButton:hover {
+  color: crimson; /* Verander de kleur bij hover */
+}
+
 
 /* Stijl voor de loading state */
 #likeButton.loading {
@@ -268,69 +339,99 @@ button:hover {
 }
 
 
-
-/* Styles for mobile devices (up to 600px width) */
-@media only screen and (max-width: 600px) {
-  /* Reset font size to improve text readability on smaller screens */
-  html {
-    font-size: 14px;
-  }
-
-  header {
-    width: 100%; /* Full width for header */
-  }
-
-  /* Adjust layout for main sections */
-  main {
-    flex-direction: column; 
-  }
-
-  nav {
-    text-align: center; /* Center de navigatie op kleine schermen */
-  }
-
-  nav ul {
-    justify-content: center; /* Center de navigatie-items */
-    flex-direction: column; /* Stapel de items verticaal op */
-    padding: 0; /* Verwijder eventuele padding */
-  }
-
-  nav li {
-    margin: 10px 0; /* Voeg ruimte toe tussen de navigatie-items */
-  }
-
-  /* Optioneel: verberg de navigatie op kleine schermen en voeg een menuknop toe */
-  .menu-button {
-    display: block; /* Toon als een blok om volledige breedte te gebruiken */
-    background-color: var(--primair); /* Gebruik de hoofdkleur */
-    color: white;
-    padding: 10px 20px;
+.vraag-section,
+.aanbod-section {
+    max-width: 800px;
+    margin: 0 auto; 
+    padding: 20px;
     border-radius: 5px;
-    margin: 20px auto; /* Plaats de knop in het midden van de pagina */
-    text-decoration: none;
-  }
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    text-align: center; 
 }
-
-  
-  .vraag-section,
-  .aanbod-section {
-    margin-right: 0;
-  }
-
   
   img {
-    max-width: 100%; /* Ensure images resize appropriately */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; 
+    height: auto; 
   }
 
 
   .vraag-section li,
   .aanbod-section li {
-    text-align: center;
+  text-align: center;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start; 
+  text-align: left; 
+  margin-bottom: 20px;
   }
+
+.vraag-section li div,
+.aanbod-section li div {
+  flex: 1; 
+  margin-left: 20px; 
+  text-align: left; 
+}
+
+.vraag-section h3,
+.aanbod-section h3 {
+  overflow-wrap: break-word;
+}
+
+
+p.button {
+    display: inline-block;
+    padding: 10px 20px;
+    height: 10px;
+    background-color: #4a535c; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Hover effect */
+p.button:hover {
+    background-color: #eeff00; 
+}
+
 
   
   button {
     padding: 10px 16px; 
     font-size: 14px; 
   }
+
+
+@media only screen and (min-width: 601px) {
+  
+  html {
+    font-size: 16px;
+  }
+
+  
+  .vraag-section h3,
+  .aanbod-section h3 {
+    font-size: 24px; /
+    margin-bottom: 20px; 
+  }
+
+
+  .vraag-section p,
+  .aanbod-section p,
+  .vraag-section li div,
+  .aanbod-section li div {
+    font-size: 16px; 
+    margin-bottom: 20px; 
+  }
+
+  /
+  .vraag-section button,
+  .aanbod-section button {
+    font-size: 16px; 
+    padding: 12px 20px;
+  }
+}

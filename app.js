@@ -149,4 +149,3 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console met het gebruikte poortnummer
   console.log(`Application started on http://localhost:${app.get('port')}`);
 });
-
